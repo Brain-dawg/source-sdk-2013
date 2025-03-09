@@ -104,10 +104,6 @@ public:
 	 */ 
 	enum FieldOfViewCheckType { USE_FOV, DISREGARD_FOV };
 	virtual bool IsAbleToSee( CBaseEntity *subject, FieldOfViewCheckType checkFOV, Vector *visibleSpot = NULL ) const;
-	bool ScriptIsAbleToSeeEntity( HSCRIPT hEntity, bool checkFOV ) const 
-	{ 
-		return this->IsAbleToSee( ToEnt( hEntity ), checkFOV ? USE_FOV : DISREGARD_FOV ); 
-	}
 	
 	virtual bool IsAbleToSee( const Vector &pos, FieldOfViewCheckType checkFOV ) const;
 	bool ScriptIsAbleToSee( const Vector &pos, bool checkFOV ) const 
@@ -140,14 +136,12 @@ public:
 	 * A visible spot on the subject is returned in 'visibleSpot'.
 	 */
 	virtual bool IsLineOfSightClearToEntity( const CBaseEntity *subject, Vector *visibleSpot = NULL ) const;
-	bool ScriptIsLineOfSightClearToEntity( HSCRIPT hEntity, Vector *visibleSpot = NULL ) const { return this->IsLineOfSightClearToEntity( ToEnt( hEntity ), visibleSpot ); }
 	
 	/// @todo: Implement LookAt system
 	virtual bool IsLookingAt( const Vector &pos, float cosTolerance = 0.95f ) const;					// are we looking at the given position
 	bool ScriptIsLookingAt( const Vector &pos, float cosTolerance = 0.95f ) const { return this->IsLookingAt( pos, cosTolerance ); }
 	
 	virtual bool IsLookingAt( const CBaseCombatCharacter *actor, float cosTolerance = 0.95f ) const;	// are we looking at the given actor
-	// bool ScriptIsLookingAtPlayer( HSCRIPT hPlayer, float cosTolerance = 0.95f ) const { return this->IsLookingAt( ToEnt( hPlayer ), cosTolerance ); }
 
 	//- Script access to vision functions ------------------------------------------------------------------
 	DECLARE_ENT_SCRIPTDESC();

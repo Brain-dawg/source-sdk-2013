@@ -801,9 +801,6 @@ bool IVision::IsLookingAt( const CBaseCombatCharacter *actor, float cosTolerance
 
 BEGIN_ENT_SCRIPTDESC( IVision, INextBotComponent, "Next bot vision" )
 
-	// DEFINE_SCRIPTFUNC( CollectKnownEntities, "Collects all known entities into the given vector" ) // todo: figure out how to serialize Vectors into a vscript datatype
-	// DEFINE_SCRIPTFUNC( IsAwareOf, "Returns true if we are aware of the given entity" ) // private member function
-
 	DEFINE_SCRIPTFUNC_WRAPPED( GetPrimaryKnownThreat, "Returns the most dangerous threat from the set of known entities" )
 	DEFINE_SCRIPTFUNC( GetTimeSinceVisible, "Returns the time since the bot saw any member of a given team" )
 	DEFINE_SCRIPTFUNC_WRAPPED( GetClosestKnown, "Returns the closest recognized entity, optionally filtered by team" )
@@ -814,7 +811,6 @@ BEGIN_ENT_SCRIPTDESC( IVision, INextBotComponent, "Next bot vision" )
 	DEFINE_SCRIPTFUNC( ForgetAllKnownEntities, "Removes all entities from the bots list of known entities" )
 	DEFINE_SCRIPTFUNC( GetMaxVisionRange, "Get the bots max vision range" )
 	DEFINE_SCRIPTFUNC( GetMinRecognizeTime, "Get the minimum time required to recognize an entity" )
-	//DEFINE_SCRIPTFUNC_WRAPPED( IsAbleToSeeEntity, "Checks if the bot can see the given Entity handle" )
 	DEFINE_SCRIPTFUNC_WRAPPED( IsAbleToSee, "Checks if the bot can see the given vector" )	
 	DEFINE_SCRIPTFUNC_WRAPPED( IsIgnored, "Returns true if we should ignore the given entity" )
 	DEFINE_SCRIPTFUNC_WRAPPED( IsVisibleEntityNoticed, "Returns true if the given visible entity has been noticed" )
@@ -824,8 +820,6 @@ BEGIN_ENT_SCRIPTDESC( IVision, INextBotComponent, "Next bot vision" )
 	DEFINE_SCRIPTFUNC( GetFieldOfView, "Gets the bots field of view" )
 	DEFINE_SCRIPTFUNC( SetFieldOfView, "Sets the horizontal field of view angle in degrees" )
 	DEFINE_SCRIPTFUNC( IsLineOfSightClear, "Returns true if the ray to the given point is unobstructed" )
-	//DEFINE_SCRIPTFUNC_WRAPPED( IsLineOfSightClearToEntity, "Returns true if line of sight to the given entity is clear" )
 	DEFINE_SCRIPTFUNC_WRAPPED( IsLookingAt, "Checks if the bot is looking at the given position" )
-	//DEFINE_SCRIPTFUNC_WRAPPED( IsLookingAtPlayer, "Checks if the bot is looking at the given player handle" )
 
 END_SCRIPTDESC();

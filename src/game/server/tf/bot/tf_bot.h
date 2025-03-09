@@ -295,6 +295,7 @@ public:
 	CTFNavArea *GetHomeArea( void ) const;
 	void ScriptSetHomeArea( HSCRIPT hScript ) { this->SetHomeArea( ToNavArea( hScript ) ); }
 	HSCRIPT ScriptGetHomeArea( void ) { return ToHScript( this->GetHomeArea() ); }
+
 	CObjectSentrygun *GetEnemySentry( void ) const;			// if we've been attacked/killed by an enemy sentry, this will return it, otherwise NULL
 	void RememberEnemySentry( CObjectSentrygun *sentry, const Vector &injurySpot );
 	const Vector &GetSpotWhereEnemySentryLastInjuredMe( void ) const;
