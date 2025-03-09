@@ -965,7 +965,10 @@ void CTFPlayerInventory::LoadLocalLoadout()
 
 					CEconItemView *pItem = GetInventoryItemByItemID(uItemId);
 					if (pItem) {
-						pItem->GetSOCData()->Equip(iClass, iSlot);
+						CEconItem *pEconItem = pItem->GetSOCData();
+						if (pEconItem) {
+							pEconItem->Equip(iClass, iSlot);
+						}
 					}
 				}
 			}
