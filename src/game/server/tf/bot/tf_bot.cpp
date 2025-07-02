@@ -4436,7 +4436,7 @@ void CTFBot::AddTag( const char *tag )
 {
 	if ( !HasTag( tag ) )
 	{
-		m_tags.AddToTail( CFmtStr( "%s", tag ) );
+		m_tags.AddToTail( CFmtStr1024( "%s", tag ) );
 	}
 }
 
@@ -4476,7 +4476,7 @@ void CTFBot::ScriptGetAllTags( HSCRIPT hTable )
 {
 	for ( int i = 0; i < m_tags.Count(); i++ )
 	{
-		g_pScriptVM->SetValue( hTable, CFmtStr( "%d", i ), m_tags[ i ] );
+		g_pScriptVM->SetValue( hTable, CFmtStr1024( "%d", i ), m_tags[ i ] );
 	}
 }
 

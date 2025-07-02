@@ -412,7 +412,7 @@ private:
 	bool m_isLookingAroundForEnemies;
 
 	unsigned int m_behaviorFlags;						// spawnflags from the bot_generator that spawned us
-	CUtlVector< CFmtStr > m_tags;
+	CUtlVector< CFmtStr1024 > m_tags;
 
 	CHandle< CBaseEntity > m_attentionFocusEntity;
 

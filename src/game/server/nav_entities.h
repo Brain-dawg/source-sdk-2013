@@ -47,7 +47,7 @@ protected:
 	static CountdownTimer gm_dirtyTimer;
 	void UpdateAllNavCostDecoration( void );
 
-	CUtlVector< CFmtStr > m_tags;
+	CUtlVector< CFmtStr1024 > m_tags;
 	bool HasTag( const char *groupname ) const;
 };
 
