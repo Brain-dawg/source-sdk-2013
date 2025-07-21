@@ -1,0 +1,74 @@
+//-----------------------------------------------------------------------------
+//	VMPI_SERVICE.VPC
+//
+//	Project Script
+//-----------------------------------------------------------------------------
+
+$Macro SRCDIR		"..\..\.."
+$Macro OUTBINDIR	"$SRCDIR\..\game\bin"
+
+$Include "$SRCDIR\vpc_scripts\source_exe_base.vpc"
+
+$Configuration
+{
+
+	$General 
+	{
+		$AdditionalProjectDependencies		"$BASE;vmpi"
+	}
+    $Compiler
+    {
+        $AdditionalIncludeDirectories    "$BASE;$SRCDIR\utils\vmpi;$SRCDIR\utils\common"
+        $PreprocessorDefinitions         "$BASE;WIN32" [$WIN64]
+    }
+
+    $Linker
+    {
+        $AdditionalLibraryDirectories    "$BASE;$SRCDIR\lib\public" [$WIN64]
+        $AdditionalDependencies          "$BASE;vmpi.lib;ws2_32.lib;advapi32.lib;user32.lib;shell32.lib;pdh.lib;libcmt.lib" [$WIN64]
+    }
+}
+
+$Project "VMPI Service"
+{
+	$Folder	"Source Files"
+	{
+		$File	"..\iphelpers.cpp"
+		$File	"service_conn_mgr.cpp"
+		$File	"service_helpers.cpp"
+		$File	"perf_counters.cpp"
+		$File	"vmpi_service.rc"
+		$File	"StdAfx.cpp"
+		$File	"..\tcpsocket_helpers.cpp"
+		$File	"..\ThreadedTCPSocket.cpp"
+		$File	"..\ThreadedTCPSocketEmu.cpp"
+		$File	"..\threadhelpers.cpp"
+		$File	"vmpi_service.cpp"
+	}
+
+	$Folder	"Header Files"
+	{
+		$File	"service_conn_mgr.h"
+		$File	"service_helpers.h"
+		$File	"perf_counters.h"
+		$File	"StdAfx.h"
+		$File	"resource.h"
+		$File	"vmpi_service.h"
+		$File	"pdh.h"
+		$File	"..\vmpi.h"
+		$File	"..\iphelpers.h"
+		$File	"..\tcpsocket.h"
+		$File	"..\tcpsocket_helpers.h"
+		$File	"..\ThreadedTCPSocketEmu.h"
+		$File	"..\threadhelpers.h"
+		$File	"..\..\common\consolewnd.h"
+	}
+
+	$Folder	"Resource Files"
+	{
+		$File	"..\vmpi_service_ui\idi_busy_icon.ico"
+		$File	"..\vmpi_service_ui\idi_disabled_icon.ico"
+		$File	"..\vmpi_service_ui\idi_waiting_icon.ico"
+		$File	"..\vmpi_service_ui\vmpi_service.ico"
+	}
+}

@@ -24,7 +24,7 @@ $Configuration
 	}
 }
 
-$Project "vmpi_transfer"
+$Project "VMPI Transfer"
 {
 	$Folder	"Source Files"
 	{
@@ -146,8 +146,8 @@ $Project "vmpi_transfer"
 
 	$Folder	"Link Libraries"
 	{
-		$File	"$SRCDIR\lib\public\tier2.lib"
-		$File	"$SRCDIR\lib\public\vmpi.lib"
-		$File	"$SRCDIR\thirdparty\libcurl\lib\win32\libcurl.lib"
+		$File	"$SRCDIR\lib\public\x64\tier2.lib"
+		$File	"$SRCDIR\lib\public\x64\vmpi.lib"
+		$File	"$SRCDIR\thirdparty\libcurl\lib\libcurl.lib"
 	}
 }

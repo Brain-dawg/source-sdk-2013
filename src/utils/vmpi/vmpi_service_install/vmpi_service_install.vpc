@@ -1,0 +1,96 @@
+//-----------------------------------------------------------------------------
+//	VMPI_SERVICE_INSTALL.VPC
+//
+//	Project Script
+//-----------------------------------------------------------------------------
+
+$Macro SRCDIR		"..\..\.."
+$Macro OUTBINDIR	"$SRCDIR\..\game\bin"
+$Macro OUTBINNAME	"vmpi_service_install"
+
+$Include "$SRCDIR\vpc_scripts\source_exe_win_win32_base.vpc"
+
+$Configuration "Debug"
+{
+	$General
+	{
+		$AdditionalProjectDependencies		"$BASE;vmpi"
+	}
+	$Compiler
+	{
+		$AdditionalIncludeDirectories		"$BASE,.\,..\,..\..\common,..\..\..\public"
+		$PreprocessorDefinitions			"$BASE;PROTECTED_THINGS_DISABLE;WINVER=0x501" [$WIN64]
+		$Create/UsePrecompiledHeader		"Use Precompiled Header (/Yu)"
+		$Create/UsePCHThroughFile			"stdafx.h"
+	}
+	
+	$Linker
+	{
+		$AdditionalDependencies				"$BASE;nafxcwd.lib" [$WIN32]
+		$AdditionalDependencies				"$BASE;mfcs140ud.lib;MSVCRTD.lib" [$WIN64]
+		$IgnoreSpecificLibrary				"nafxcw.lib;libcmt.lib;libcmtd.lib" [$WIN32]
+		$IgnoreSpecificLibrary				"libcmt.lib;libcmtd.lib" [$WIN64]
+	}
+}
+
+$Configuration "Release"
+{
+	$Compiler
+	{
+		$AdditionalIncludeDirectories		"$BASE,.\,..\,..\..\common,..\..\..\public"
+		$PreprocessorDefinitions			"$BASE;PROTECTED_THINGS_DISABLE;WINVER=0x501" [$WIN64]
+		$Create/UsePrecompiledHeader		"Use Precompiled Header (/Yu)"
+		$Create/UsePCHThroughFile			"stdafx.h"
+		$RuntimeLibrary                      "Multi-threaded DLL (/MD)"
+	}
+	
+	$Linker
+	{
+		$AdditionalDependencies				"$BASE;nafxcw.lib" [$WIN32]
+		$AdditionalDependencies				"$BASE;mfcs140u.lib;MSVCRT.lib" [$WIN64]
+		$IgnoreSpecificLibrary				"nafxcwd.lib;libcmtd.lib" [$WIN32]
+		$IgnoreSpecificLibrary				"libcmtd.lib" [$WIN64]
+	}
+}
+
+$Project "VMPI Service Install"
+{
+	$Folder	"Source Files"
+	{
+		-$File	"$SRCDIR\public\tier0\memoverride.cpp"
+
+		$File	"StdAfx.cpp"
+		{
+			$Configuration
+			{
+				$Compiler
+				{
+					$Create/UsePrecompiledHeader		"Create Precompiled Header (/Yc)"
+				}
+			}
+		}
+
+		$File	"ServiceInstallDlg.cpp"
+		$File	"vmpi_service_install.cpp"
+		$File	"vmpi_service_install.rc"
+	}
+
+	$Folder	"Header Files"
+	{
+		$File	"ServiceInstallDlg.h"
+		$File	"Resource.h"
+		$File	"StdAfx.h"
+		$File	"vmpi_service_install.h"
+	}
+
+	$Folder	"Resource Files"
+	{
+		$File	"res\vmpi_service_install.ico"
+		$File	"res\vmpi_service_install.rc2"
+	}
+
+	$Folder	"Link Libraries"
+	{
+		$DynamicFile	"$SRCDIR\lib\public\vmpi.lib"
+	}
+}

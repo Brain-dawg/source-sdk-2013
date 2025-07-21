@@ -27,13 +27,20 @@ int GetCurMicrosecondsAndSleep( int sleepLen )
 {
 	Sleep( sleepLen );
 
+#ifdef _WIN64
+	#include <intrin.h>
+	// On 64-bit, we'll just use the lower 32 bits to maintain
+	// compatibility with the original function's return type
+	return (int)(__rdtsc() & 0xFFFFFFFF);
+#else
 	int retVal;
 	__asm
 	{
 		rdtsc
-		mov		retVal,   eax
+		mov     retVal,   eax
 	}
 	return retVal;
+#endif
 }
 
 

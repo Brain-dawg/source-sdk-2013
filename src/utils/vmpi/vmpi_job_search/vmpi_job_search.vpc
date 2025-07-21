@@ -14,7 +14,7 @@ $Configuration
 {
 	$Compiler
 	{
-		$AdditionalIncludeDirectories		"$BASE,..\,..\mysql\include"
+		$AdditionalIncludeDirectories		"$BASE,.\,..\,..\..\common,..\..\..\thirdparty\libmysql\include"
 		$PreprocessorDefinitions			"$BASE;PROTECTED_THINGS_DISABLE;WINVER=0x501;NO_WARN_MBCS_MFC_DEPRECATION"
 		$Create/UsePrecompiledHeader		"Use Precompiled Header (/Yu)"
 		$PrecompiledHeaderFile				"Debug/vmpi_browser_job_search.pch"
@@ -42,7 +42,7 @@ $Configuration "Release"
 	}
 }
 
-$Project "vmpi_job_search"
+$Project "VMPI Job Search"
 {
 	$Folder	"Source Files"
 	{
@@ -52,6 +52,7 @@ $Project "vmpi_job_search"
 		$File	"vmpi_browser_job_search.cpp"
 		$File	"vmpi_browser_job_search.rc"
 		$File	"..\window_anchor_mgr.cpp"
+		$File	"..\mysql_wrapper.cpp"
 		
 		$File	"JobSearchDlg.cpp"				\
 				"..\vmpi_browser_helpers.cpp"
@@ -81,6 +82,7 @@ $Project "vmpi_job_search"
 	{
 		$File	"JobSearchDlg.h"
 		$File	"..\mysql_wrapper.h"
+		$File	"..\imysqlwrapper.h"
 		$File	"..\net_view_thread.h"
 		$File	"Resource.h"
 		$File	"StdAfx.h"
@@ -93,5 +95,9 @@ $Project "vmpi_job_search"
 	{
 		$File	"res\vmpi_browser_job_search.ico"
 		$File	"res\vmpi_browser_job_search.rc2"
+	}
+	$Folder	"Link Libraries"
+	{
+		$File	"$SRCDIR\thirdparty\libmysql\lib\x64\libmysql.lib"
 	}
 }

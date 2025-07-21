@@ -18,11 +18,11 @@ $Configuration
 
 	$Linker
 	{
-		$AdditionalDependencies				"ws2_32.lib odbc32.lib odbccp32.lib"
+		$AdditionalDependencies				"$BASE;ws2_32.lib;odbc32.lib;odbccp32.lib" [$WIN64]
 	}
 }
 
-$Project "Vmpi_launch"
+$Project "VMPI Launch"
 {
 	$Folder	"Source Files"
 	{

@@ -4,26 +4,26 @@
 //	Project Script
 //-----------------------------------------------------------------------------
 
-$Macro SRCDIR		"..\.."
+$Macro SRCDIR		"../.."
 
-$Include "$SRCDIR\vpc_scripts\source_lib_base.vpc"
+$Include "$SRCDIR/vpc_scripts/source_lib_base.vpc"
 
 $Configuration
 {
 	$Compiler
 	{
-		$AdditionalIncludeDirectories		"$BASE,..\common,zlib,.\"
-		$AdditionalIncludeDirectories		"$BASE,$SRCDIR\thirdparty\libcurl\include"
+		$AdditionalIncludeDirectories		"$BASE,../common,zlib,./"
+		$AdditionalIncludeDirectories		"$BASE,$SRCDIR/thirdparty/libcurl/include"
 		$PreprocessorDefinitions			"$BASE;PROTECTED_THINGS_DISABLE;MPI"
 	}
 }
 
-$Project "Vmpi"
+$Project "VMPI"
 {
 	$Folder	"Source Files"
 	{
-		$File	"$SRCDIR\public\filesystem_init.cpp"
-		$File	"..\common\filesystem_tools.cpp"
+		$File	"$SRCDIR/public/filesystem_init.cpp"
+		$File	"../common/filesystem_tools.cpp"
 		$File	"iphelpers.cpp"
 		$File	"loopback_channel.cpp"
 		$File	"messbuf.cpp"
@@ -45,7 +45,7 @@ $Project "Vmpi"
 
 	$Folder	"Header Files"
 	{
-		$File	"$SRCDIR\public\tier1\bitbuf.h"
+		$File	"$SRCDIR/public/tier1/bitbuf.h"
 		$File	"ichannel.h"
 		$File	"iphelpers.h"
 		$File	"IThreadedTCPSocket.h"

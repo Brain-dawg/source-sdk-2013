@@ -173,7 +173,8 @@ int CVMPIFile_Memory::Read( void* pOutput, int size )
 		// Perform crlf translation
 		while ( const char *crlf = ( const char * ) memchr( pData, '\r', len ) )
 		{
-			int canCopy = min( size, crlf - pData );
+			// int canCopy = min( size, crlf - pData );
+			int canCopy = (size < (crlf - pData) ? size : (crlf - pData));
 			memcpy( pOutput, pData, canCopy );
 			
 			m_iCurPos += canCopy;
@@ -210,7 +211,8 @@ int CVMPIFile_Memory::Read( void* pOutput, int size )
 		if ( size && len )
 		{
 			// No crlf characters left
-			int canCopy = min( size, len );
+			// int canCopy = min( size, len );
+			int canCopy = (size < len ? size : len);
 			memcpy( pOutput, pData, canCopy );
 
 			m_iCurPos += canCopy;

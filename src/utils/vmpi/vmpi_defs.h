@@ -93,8 +93,8 @@
 
 
 // VMPI Registry server settings
-#define VMPI_REGISTRY_WEB_SERVICE_HOST "vmpi-registry.valvesoftware.com"
-#define VMPI_REGISTRY_WEB_SERVICE_PORT 80
+#define VMPI_REGISTRY_WEB_SERVICE_HOST "testing.potato.tf"
+#define VMPI_REGISTRY_WEB_SERVICE_PORT 443
 #define VMPI_REGISTRY_REGISTRATION_UPDATE_INTERVAL 600.0	// vmpi_service worker machines advertise themselves with the registry every 10 minutes
 
 

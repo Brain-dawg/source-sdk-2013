@@ -14,7 +14,7 @@ $Configuration
 {
 	$Compiler
 	{
-		$AdditionalIncludeDirectories		"$BASE,.\,..\,..\..\common,..\mysql\include"
+		$AdditionalIncludeDirectories		"$BASE,.\,..\,..\..\common,..\..\..\thirdparty\libmysql\include"
 		$PreprocessorDefinitions			"$BASE;PROTECTED_THINGS_DISABLE;WINVER=0x501;NO_WARN_MBCS_MFC_DEPRECATION"
 		$EnableC++Exceptions				"Yes (/EHsc)"
 	}
@@ -40,7 +40,7 @@ $Configuration "Release"
 	}
 }
 
-$Project "vmpi_job_watch"
+$Project "VMPI Job Watch"
 {
 	$Folder	"Source Files"
 	{
@@ -56,6 +56,7 @@ $Project "vmpi_job_watch"
 		$File	"vmpi_browser_job_watch.rc"
 		$File	"..\win_idle.cpp"
 		$File	"..\window_anchor_mgr.cpp"
+		$File	"..\mysql_wrapper.cpp"
 	}
 
 	$Folder	"Header Files"
@@ -66,15 +67,22 @@ $Project "vmpi_job_watch"
 		$File	"JobWatchDlg.h"
 		$File	"..\mysql_async.h"
 		$File	"..\mysql_wrapper.h"
+		$File	"..\imysqlwrapper.h"
 		$File	"Resource.h"
 		$File	"StdAfx.h"
 		$File	"vmpi_browser_job_watch.h"
 		$File	"..\win_idle.h"
+		
 	}
 
 	$Folder	"Resource Files"
 	{
 		$File	"res\vmpi_browser_job_watch.ico"
 		$File	"res\vmpi_browser_job_watch.rc2"
+	}
+	
+	$Folder	"Link Libraries"
+	{
+		$File	"$SRCDIR\thirdparty\libmysql\lib\x64\libmysql.lib"
 	}
 }

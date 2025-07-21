@@ -150,3 +150,52 @@ $Project "vvis_launcher"
 	"utils\vvis_launcher\vvis_launcher.vpc" [$WINDOWS]
 }
 
+$Project "vmpi"
+{
+	"utils\vmpi\vmpi.vpc"
+}
+
+$Project "vmpi_services_watch"
+{
+	"utils\vmpi\vmpi_services_watch\vmpi_services_watch.vpc"
+}
+
+$Project "vmpi_transfer"
+{
+	"utils\vmpi\vmpi_transfer\vmpi_transfer.vpc"
+}
+
+$Project "vmpi_job_watch"
+{
+	"utils\vmpi\vmpi_job_watch\vmpi_job_watch.vpc"
+}
+
+$Project "vmpi_job_search"
+{
+	"utils\vmpi\vmpi_job_search\vmpi_job_search.vpc"
+}
+
+$Project "vmpi_service"
+{
+	"utils\vmpi\vmpi_service\vmpi_service.vpc"
+}
+
+$Project "vmpi_service_install"
+{
+	"utils\vmpi\vmpi_service_install\vmpi_service_install.vpc"
+}
+
+$Project "vmpi_service_ui"
+{
+	"utils\vmpi\vmpi_service_ui\vmpi_service_ui.vpc"
+}
+
+$Project "vmpi_launch"
+{
+	"utils\vmpi\testapps\vmpi_launch\vmpi_launch.vpc"
+}
+
+$Project "waitandrestart"
+{
+	"utils\vmpi\WaitAndRestart\waitandrestart.vpc"
+}
