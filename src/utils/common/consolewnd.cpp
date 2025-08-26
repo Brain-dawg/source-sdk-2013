@@ -41,14 +41,14 @@ public:
 
 private:
 
-	int				WindowProc( 
+	INT_PTR			WindowProc( 
 		HWND hwndDlg,  // handle to dialog box
 		UINT uMsg,     // message
 		WPARAM wParam, // first message parameter
 		LPARAM lParam  // second message parameter
 		);	
 	
-	static int		CALLBACK StaticWindowProc(
+	static INT_PTR	CALLBACK StaticWindowProc(
 		HWND hwndDlg,  // handle to dialog box
 		UINT uMsg,     // message
 		WPARAM wParam, // first message parameter
@@ -94,7 +94,7 @@ bool CConsoleWnd::Init( void *hInstance, int dialogResourceID, int editControlID
 	if ( !m_hWnd )
 		return false;
 
-	SetWindowLong( m_hWnd, GWL_USERDATA, reinterpret_cast< LONG >( this ) );
+	SetWindowLongPtr( m_hWnd, GWLP_USERDATA, reinterpret_cast< LONG_PTR >( this ) );
 	if ( bVisible )
 		ShowWindow( m_hWnd, SW_SHOW );
 
@@ -177,7 +177,7 @@ void CConsoleWnd::SetTitle( const char *pTitle )
 }
 
 
-int	CConsoleWnd::WindowProc( 
+INT_PTR CConsoleWnd::WindowProc( 
 	HWND hwndDlg,  // handle to dialog box
 	UINT uMsg,     // message
 	WPARAM wParam, // first message parameter
@@ -226,14 +226,14 @@ int	CConsoleWnd::WindowProc(
 }
 
 
-int	CConsoleWnd::StaticWindowProc(
+INT_PTR CConsoleWnd::StaticWindowProc(
 	HWND hwndDlg,  // handle to dialog box
 	UINT uMsg,     // message
 	WPARAM wParam, // first message parameter
 	LPARAM lParam  // second message parameter
 	)
 {
-	CConsoleWnd *pDlg = (CConsoleWnd*)GetWindowLong( hwndDlg, GWL_USERDATA );
+	CConsoleWnd *pDlg = (CConsoleWnd*)GetWindowLongPtr( hwndDlg, GWLP_USERDATA );
 	if ( pDlg )
 		return pDlg->WindowProc( hwndDlg, uMsg, wParam, lParam );
 	else

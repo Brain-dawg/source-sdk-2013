@@ -1852,109 +1852,6 @@ bool VMPI_CheckForNonSDKExecutables()
 	return ( _access( baseExeFilename, 0 ) == 0 );
 }
 
-
-// bool IsValidSDKBinPath( CUtlVector< char* > &outStrings, int *pError )
-// {
-// 	*pError = 0;
-
-// 	// Minimum must have drive:/basedir/steamapps/name/sourcesdk/bin/[ep1|orangebox]/bin/exename
-// 	if ( outStrings.Count() < 9 )
-// 	{
-// 		*pError = 0;
-// 		return false;
-// 	}
-
-// 	if ( V_stricmp( outStrings[outStrings.Count()-2], "bin" ) != 0 )
-// 	{
-// 		*pError = 1;
-// 		return false;
-// 	}
-
-// 	if ( V_stricmp( outStrings[outStrings.Count()-5], "sourcesdk" ) != 0 )
-// 	{
-// 		*pError = 2;
-// 		return false;
-// 	}
-
-// 	if ( V_stricmp( outStrings[outStrings.Count()-7], "steamapps" ) != 0 )
-// 	{
-// 		*pError = 3;
-// 		return false;
-// 	}
-
-// 	// Check the last-access date on clientregistry.blob
-// 	char baseSteamPath[MAX_PATH];
-// 	V_strncpy( baseSteamPath, outStrings[0], sizeof( baseSteamPath) );
-// 	for ( int i=1; i < outStrings.Count() - 7; i++ )
-// 	{
-// 		V_AppendSlash( baseSteamPath, sizeof( baseSteamPath ) );
-// 		V_strncat( baseSteamPath, outStrings[i], sizeof( baseSteamPath ) );
-// 	}
-
-// 	char blobPath[MAX_PATH];
-// 	V_ComposeFileName( baseSteamPath, "ClientRegistry.blob", blobPath, sizeof( blobPath ) );
-// 	struct _stat results;
-// 	if ( _stat( blobPath, &results ) != 0 )
-// 	{
-// 		*pError = 4;
-// 		return false;
-// 	}
-
-// 	time_t curTime;
-// 	time( &curTime );
-// 	int nSecondsSinceLastSteamAccess = curTime - results.st_mtime;
-// 	int nSecondsPerDay = 60 * 60 * 24;
-// 	int nMaxDaysUnaccessed = 10;
-// 	if ( nSecondsSinceLastSteamAccess > nSecondsPerDay*nMaxDaysUnaccessed )
-// 	{
-// 		*pError = 5; // NOTE: don't change this error code because the outer function checks for it.
-// 		return false;
-// 	}
-
-// 	// Check for some of the files under sourcesdk_content.
-// 	char sourcesdkContentPath[MAX_PATH];
-// 	V_strncpy( sourcesdkContentPath, outStrings[0], sizeof( sourcesdkContentPath ) );
-// 	for ( int i=1; i < outStrings.Count() - 5; i++ )
-// 	{
-// 		V_AppendSlash( sourcesdkContentPath, sizeof( sourcesdkContentPath ) );
-// 		V_strncat( sourcesdkContentPath, outStrings[i], sizeof( sourcesdkContentPath ) );
-// 	}
-// 	V_AppendSlash( sourcesdkContentPath, sizeof( sourcesdkContentPath ) );
-// 	V_strncat( sourcesdkContentPath, "sourcesdk_content", sizeof( sourcesdkContentPath ) );
-
-// 	char tempFilename[MAX_PATH], mapsrcFilename[MAX_PATH];
-// 	V_snprintf( tempFilename, sizeof( tempFilename ), "cstrike%cmapsrc", CORRECT_PATH_SEPARATOR );
-// 	V_ComposeFileName( sourcesdkContentPath, tempFilename, mapsrcFilename, sizeof( mapsrcFilename ) );
-// 	if ( _access( mapsrcFilename, 0 ) != 0 )
-// 	{
-// 		*pError = 6;
-// 		return false;
-// 	}	
-
-// 	return true;
-// }
-
-// void VerifyValidSDKMode()
-// {
-	// Make sure we're running out of the SourceSDK directory and that our SDK directories are filled out.
-	// char baseExeFilename[MAX_PATH];
-	// if ( !GetModuleFileName( GetModuleHandle( NULL ), baseExeFilename, sizeof( baseExeFilename ) ) )
-	// 	Error( "VerifyValidSDKMode: GetModuleFileName failed." );
-	// V_FixSlashes( baseExeFilename );
-
-	// char strSlash[2] = {CORRECT_PATH_SEPARATOR, 0};
-	// CSplitString outStrings( baseExeFilename, strSlash );
-
-	// int err;
-	// if ( !IsValidSDKBinPath( outStrings, &err ) )
-	// {
-	// 	if ( err == 5 )
-	// 		Error( "VMPI running in SDK mode but Steam hasn't been run recently. Please run Steam and retry." );
-	// 	else
-	// 		Error( "VMPI running in SDK mode but incorrect SDK install detected (error %d).", err );
-	// }
-// }
-
 void VMPI_CheckSDKMode( int argc, char **argv )
 {
 	if ( g_bIsRunningVMPITransfer )
@@ -1981,16 +1878,8 @@ void VMPI_CheckSDKMode( int argc, char **argv )
 	const char *pSDKMode = VMPI_FindArg( argc, argv, VMPI_GetParamString( mpi_SDKMode ), "1" );
 	if ( pSDKMode )
 	{
-		if ( pSDKMode[0] == '0' )
-			g_bVMPISDKMode = false;
-		else if ( pSDKMode[0] == '1' )
-			g_bVMPISDKMode = true;
+		g_bVMPISDKMode = V_atoi( pSDKMode ) > 0;
 	}
-
-	// if ( g_bVMPISDKMode )
-	// {
-	// 	VerifyValidSDKMode();
-	// }
 
 	if ( g_bVMPISDKMode )
 	{	

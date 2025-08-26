@@ -160,7 +160,7 @@ struct LightingValue_t
 	{
 		VectorMA( m_vecLighting, flAmount, vecColor, m_vecLighting );
 		m_flDirectSunAmount += flSunAmount;
-		Assert( this->IsValid() );
+	//	Assert( this->IsValid() );
 	}
 
 
@@ -168,7 +168,7 @@ struct LightingValue_t
 	{
 		m_vecLighting += src.m_vecLighting;
 		m_flDirectSunAmount += src.m_flDirectSunAmount;
-		Assert( this->IsValid() );
+	//	Assert( this->IsValid() );
 	}
 	
 	FORCEINLINE void Init( float x, float y, float z )

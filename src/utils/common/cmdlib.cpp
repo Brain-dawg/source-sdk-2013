@@ -687,13 +687,22 @@ int Q_filelength (FileHandle_t f)
 
 FileHandle_t SafeOpenWrite ( const char *filename )
 {
+	// Check if file exists first
+	// if (g_pFileSystem->FileExists(filename))
+	// {
+	// 	Msg("File exists, checking if writable...\n");
+	// 	if (!g_pFileSystem->IsFileWritable(filename))
+	// 	{
+	// 		Msg("File is not writable, attempting to make writable...\n");
+	// 		g_pFileSystem->SetFileWritable(filename, true);
+	// 	}
+	// }
+
 	FileHandle_t f = g_pFileSystem->Open(filename, "wb");
 
 	if (!f)
 	{
-		//Error ("Error opening %s: %s",filename,strerror(errno));
-		// BUGBUG: No way to get equivalent of errno from IFileSystem!
-		Error ("Error opening %s! (Check for write enable)\n",filename);
+		Error("Error opening %s! (Check for write enable)\n", filename);
 	}
 
 	return f;
